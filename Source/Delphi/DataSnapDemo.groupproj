@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B20E86B1-50F0-42B7-B703-B1A725B74A2A}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Delphi Client\DataSnapClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Server\DUGDataSnapServer.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DataSnapClient">
+        <MSBuild Projects="Delphi Client\DataSnapClient.dproj"/>
+    </Target>
+    <Target Name="DataSnapClient:Clean">
+        <MSBuild Projects="Delphi Client\DataSnapClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DataSnapClient:Make">
+        <MSBuild Projects="Delphi Client\DataSnapClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DUGDataSnapServer">
+        <MSBuild Projects="Server\DUGDataSnapServer.dproj"/>
+    </Target>
+    <Target Name="DUGDataSnapServer:Clean">
+        <MSBuild Projects="Server\DUGDataSnapServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DUGDataSnapServer:Make">
+        <MSBuild Projects="Server\DUGDataSnapServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DataSnapClient;DUGDataSnapServer"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DataSnapClient:Clean;DUGDataSnapServer:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DataSnapClient:Make;DUGDataSnapServer:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
