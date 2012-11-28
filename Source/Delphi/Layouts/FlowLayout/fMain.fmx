@@ -1,0 +1,156 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 265
+  ClientWidth = 610
+  FormFactor.Width = 1680
+  FormFactor.Height = 1050
+  FormFactor.Devices = [dkDesktop]
+  object FlowLayout1: TFlowLayout
+    Align = alClient
+    Height = 265.000000000000000000
+    Width = 610.000000000000000000
+    Justify = fjLeft
+    JustifyLastLine = fjLeft
+    FlowDirection = fdLeftToRight
+    HorizontalGap = 10.000000000000000000
+    VerticalGap = 10.000000000000000000
+    object Panel1: TPanel
+      Height = 265.000000000000000000
+      Width = 297.000000000000000000
+      object GridLayout1: TGridLayout
+        Align = alCenter
+        Height = 255.000000000000000000
+        ItemHeight = 64.000000000000000000
+        ItemWidth = 64.000000000000000000
+        Orientation = orHorizontal
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Position.X = 52.000000000000000000
+        Position.Y = 5.000000000000000000
+        Width = 193.000000000000000000
+        object Button1: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button2: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.X = 64.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button3: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.X = 128.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button4: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.Y = 64.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button5: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.X = 64.000000000000000000
+          Position.Y = 64.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button6: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.X = 128.000000000000000000
+          Position.Y = 64.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button7: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.Y = 128.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button8: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.X = 64.000000000000000000
+          Position.Y = 128.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button9: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.X = 128.000000000000000000
+          Position.Y = 128.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button10: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.Y = 192.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button11: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.X = 64.000000000000000000
+          Position.Y = 192.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+        object Button12: TButton
+          DisableFocusEffect = False
+          Height = 64.000000000000000000
+          Position.X = 128.000000000000000000
+          Position.Y = 192.000000000000000000
+          Text = 'Button1'
+          Width = 64.000000000000000000
+        end
+      end
+    end
+    object Panel2: TPanel
+      Height = 265.000000000000000000
+      Position.X = 307.000000000000000000
+      Width = 302.000000000000000000
+      object Label1: TLabel
+        Height = 15.000000000000000000
+        Position.X = 56.000000000000000000
+        Position.Y = 72.000000000000000000
+        Text = 'Label1'
+        Width = 120.000000000000000000
+      end
+      object Edit1: TEdit
+        DisableFocusEffect = False
+        KeyboardType = vktDefault
+        Password = False
+        Position.X = 56.000000000000000000
+        Position.Y = 120.000000000000000000
+        Width = 201.000000000000000000
+        Height = 22.000000000000000000
+        object Button13: TButton
+          Align = alRight
+          DisableFocusEffect = False
+          Height = 22.000000000000000000
+          Position.X = 144.000000000000000000
+          Text = 'Button13'
+          Width = 57.000000000000000000
+        end
+      end
+    end
+  end
+end

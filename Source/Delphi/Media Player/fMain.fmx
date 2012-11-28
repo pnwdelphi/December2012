@@ -1,0 +1,180 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 786
+  FormFactor.Width = 1680
+  FormFactor.Height = 1050
+  FormFactor.Devices = [dkDesktop]
+  OnDestroy = FormDestroy
+  object MainLayout: TLayout
+    Align = alLeft
+    Height = 480.000000000000000000
+    Width = 545.000000000000000000
+    object ControlPlayLayout: TLayout
+      Align = alBottom
+      Height = 81.000000000000000000
+      Position.Y = 399.000000000000000000
+      Width = 545.000000000000000000
+      object PreviousButton: TButton
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.X = 32.000000000000000000
+        Position.Y = 32.000000000000000000
+        Text = 'PreviousButton'
+        Width = 80.000000000000000000
+        OnClick = PreviousButtonClick
+      end
+      object PlayButton: TButton
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.X = 120.000000000000000000
+        Position.Y = 32.000000000000000000
+        Text = 'PlayButton'
+        Width = 80.000000000000000000
+        OnClick = PlayButtonClick
+      end
+      object PauseButton: TButton
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.X = 208.000000000000000000
+        Position.Y = 32.000000000000000000
+        Text = 'PauseButton'
+        Width = 80.000000000000000000
+        OnClick = PauseButtonClick
+      end
+      object StopButton: TButton
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.X = 296.000000000000000000
+        Position.Y = 32.000000000000000000
+        Text = 'StopButton'
+        Width = 80.000000000000000000
+        OnClick = StopButtonClick
+      end
+      object NextButton: TButton
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.X = 384.000000000000000000
+        Position.Y = 32.000000000000000000
+        Text = 'NextButton'
+        Width = 80.000000000000000000
+        OnClick = NextButtonClick
+      end
+      object VolumeTrackBar: TTrackBar
+        DisableFocusEffect = False
+        Height = 20.000000000000000000
+        Orientation = orHorizontal
+        Position.X = 488.000000000000000000
+        Position.Y = 40.000000000000000000
+        RotationAngle = 270.000000000000000000
+        Width = 50.000000000000000000
+        OnChange = VolumeTrackBarChange
+      end
+      object PositionTrackBar: TTrackBar
+        Align = alTop
+        DisableFocusEffect = False
+        Height = 20.000000000000000000
+        Orientation = orHorizontal
+        Width = 545.000000000000000000
+        OnChange = PositionTrackBarChange
+      end
+      object ShuffleCheckBox: TCheckBox
+        DisableFocusEffect = False
+        Height = 19.000000000000000000
+        Position.X = 356.000000000000000000
+        Position.Y = 56.000000000000000000
+        Text = 'ShuffleCheckBox'
+        Width = 120.000000000000000000
+        OnChange = ShuffleCheckBoxChange
+      end
+    end
+    object TextLayout: TLayout
+      Align = alTop
+      Height = 49.000000000000000000
+      Width = 545.000000000000000000
+      object NameLabel: TLabel
+        Align = alClient
+        Height = 49.000000000000000000
+        Text = 'NameLabel'
+        TextAlign = taCenter
+        Width = 470.000000000000000000
+      end
+      object DurationLabel: TLabel
+        Align = alRight
+        AutoSize = True
+        Height = 49.000000000000000000
+        Position.X = 470.000000000000000000
+        Text = 'DurationLabel'
+        Width = 75.000000000000000000
+        WordWrap = False
+      end
+    end
+    object MediaPlayerControl1: TMediaPlayerControl
+      Align = alClient
+      Height = 350.000000000000000000
+      Position.Y = 49.000000000000000000
+      Width = 545.000000000000000000
+    end
+  end
+  object PlayListLayout: TLayout
+    Align = alClient
+    Height = 480.000000000000000000
+    Position.X = 545.000000000000000000
+    Width = 241.000000000000000000
+    object ControlListLayout: TLayout
+      Align = alBottom
+      Height = 64.000000000000000000
+      Position.Y = 416.000000000000000000
+      Width = 241.000000000000000000
+      object LoadFileButton: TButton
+        Align = alLeft
+        DisableFocusEffect = False
+        Height = 64.000000000000000000
+        Text = 'LoadFileButton'
+        Width = 80.000000000000000000
+        OnClick = LoadFileButtonClick
+      end
+      object ClearAllButton: TButton
+        Align = alLeft
+        DisableFocusEffect = False
+        Height = 64.000000000000000000
+        Position.X = 80.000000000000000000
+        Text = 'ClearAllButton'
+        Width = 80.000000000000000000
+        OnClick = ClearAllButtonClick
+      end
+      object ClearButton: TButton
+        Align = alLeft
+        DisableFocusEffect = False
+        Height = 64.000000000000000000
+        Position.X = 160.000000000000000000
+        Text = 'ClearButton'
+        Width = 80.000000000000000000
+        OnClick = ClearButtonClick
+      end
+    end
+    object PlayListBox: TListBox
+      Touch.InteractiveGestures = [igPan]
+      Align = alClient
+      Height = 416.000000000000000000
+      Width = 241.000000000000000000
+      OnDblClick = PlayListBoxDblClick
+    end
+  end
+  object MediaPlayer1: TMediaPlayer
+    Left = 648
+    Top = 153
+  end
+  object OpenDialog1: TOpenDialog
+    Options = [ofHideReadOnly, ofAllowMultiSelect, ofEnableSizing]
+    Left = 649
+    Top = 216
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 649
+    Top = 184
+  end
+end
