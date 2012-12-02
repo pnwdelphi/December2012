@@ -15,9 +15,13 @@ type
     OpenDialog1: TOpenDialog;
     Button2: TButton;
     Button3: TButton;
+    TrackBar1: TTrackBar;
+    TrackBar2: TTrackBar;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure TrackBar1Change(Sender: TObject);
+    procedure TrackBar2Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,14 +52,30 @@ end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-  if Assigned(MediaPlayer1.Media) then
-     MediaPlayer1.Play;
+  if MediaPlayer1.State <> TMediaState.Unavailable  then
+    if MediaPlayer1.State = TMediaState.Stopped  then
+      MediaPlayer1.Play
+    else
+      MediaPlayer1.Stop;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
 begin
-  if Assigned(MediaPlayer2.Media) then
-    MediaPlayer2.Play;
+  if MediaPlayer2.State <> TMediaState.Unavailable  then
+    if MediaPlayer2.State = TMediaState.Stopped  then
+      MediaPlayer2.Play
+    else
+      MediaPlayer2.Stop;
+end;
+
+procedure TForm1.TrackBar1Change(Sender: TObject);
+begin
+  MediaPlayer1.Volume := TrackBar1.Value/100;
+end;
+
+procedure TForm1.TrackBar2Change(Sender: TObject);
+begin
+  MediaPlayer2.Volume := TrackBar2.Value/100;
 end;
 
 end.

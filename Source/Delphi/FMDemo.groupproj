@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{9495E2FD-16FD-4870-A0CA-E67ED6692972}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Layouts\FlowLayout\FlowLayout.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="VideoCaptureHD\VideoCaptureHD.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DoublePlayer\dplayer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FireFlow\FireFlow.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="FlowLayout">
+        <MSBuild Projects="Layouts\FlowLayout\FlowLayout.dproj"/>
+    </Target>
+    <Target Name="FlowLayout:Clean">
+        <MSBuild Projects="Layouts\FlowLayout\FlowLayout.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FlowLayout:Make">
+        <MSBuild Projects="Layouts\FlowLayout\FlowLayout.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VideoCaptureHD">
+        <MSBuild Projects="VideoCaptureHD\VideoCaptureHD.dproj"/>
+    </Target>
+    <Target Name="VideoCaptureHD:Clean">
+        <MSBuild Projects="VideoCaptureHD\VideoCaptureHD.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VideoCaptureHD:Make">
+        <MSBuild Projects="VideoCaptureHD\VideoCaptureHD.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dplayer">
+        <MSBuild Projects="DoublePlayer\dplayer.dproj"/>
+    </Target>
+    <Target Name="dplayer:Clean">
+        <MSBuild Projects="DoublePlayer\dplayer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dplayer:Make">
+        <MSBuild Projects="DoublePlayer\dplayer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FireFlow">
+        <MSBuild Projects="FireFlow\FireFlow.dproj"/>
+    </Target>
+    <Target Name="FireFlow:Clean">
+        <MSBuild Projects="FireFlow\FireFlow.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FireFlow:Make">
+        <MSBuild Projects="FireFlow\FireFlow.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="FlowLayout;VideoCaptureHD;dplayer;FireFlow"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="FlowLayout:Clean;VideoCaptureHD:Clean;dplayer:Clean;FireFlow:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="FlowLayout:Make;VideoCaptureHD:Make;dplayer:Make;FireFlow:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

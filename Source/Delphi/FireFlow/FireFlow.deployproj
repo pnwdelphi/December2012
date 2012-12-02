@@ -1,0 +1,180 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Condition="Exists('$(BDS)\bin\CodeGear.Deployment.targets')" Project="$(BDS)\bin\CodeGear.Deployment.targets"/>
+    <ProjectExtensions>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <ItemGroup Condition="'$(Platform)'=='Win64'">
+        <DeployFile Include="Debug\Win64\FireFlow.exe" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>FireFlow.exe</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Release\Win64\FireFlow.rsm" Condition="'$(Config)'=='Release'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>FireFlow.rsm</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Release\Win64\FireFlow.exe" Condition="'$(Config)'=='Release'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>FireFlow.exe</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="$(BDSLIB)\$(PLATFORM)\debug\sysinit.dcu" Condition="'$(UsePackages)'=='true'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>sysinit.dcu</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="$(BDSLIB)\$(PLATFORM)\debug\rtl.dcp" Condition="'$(UsePackages)'=='true'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>rtl.dcp</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Debug\Win64\FireFlow.rsm" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>FireFlow.rsm</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='OSX32'">
+        <DeployFile Include="Debug\OSX32\FireFlow.rsm" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FireFlow.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>FireFlow.rsm</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Release\OSX32\FireFlow.icns" Condition="'$(Config)'=='Release'">
+            <RemoteDir>FireFlow.app\Contents\Resources\</RemoteDir>
+            <RemoteName>FireFlow.icns</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Debug\OSX32\FireFlow.info.plist" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FireFlow.app\Contents\</RemoteDir>
+            <RemoteName>FireFlow.info.plist</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Debug\OSX32\FireFlow.entitlements" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FireFlow.app\</RemoteDir>
+            <RemoteName>Entitlements.plist</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Release\OSX32\FireFlow.rsm" Condition="'$(Config)'=='Release'">
+            <RemoteDir>FireFlow.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>FireFlow.rsm</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="$(BDSLIB)\$(PLATFORM)\debug\sysinit.dcu" Condition="'$(UsePackages)'=='true'">
+            <RemoteDir>FireFlow.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>sysinit.dcu</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="$(BDSLIB)\$(PLATFORM)\debug\rtl.dcp" Condition="'$(UsePackages)'=='true'">
+            <RemoteDir>FireFlow.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>rtl.dcp</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Debug\OSX32\FireFlow" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FireFlow.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>FireFlow</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Debug\OSX32\FireFlow.icns" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FireFlow.app\Contents\Resources\</RemoteDir>
+            <RemoteName>FireFlow.icns</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Release\OSX32\FireFlow.info.plist" Condition="'$(Config)'=='Release'">
+            <RemoteDir>FireFlow.app\Contents\</RemoteDir>
+            <RemoteName>FireFlow.info.plist</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib">
+            <RemoteDir>FireFlow.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>libcgunwind.1.0.dylib</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Release\OSX32\FireFlow" Condition="'$(Config)'=='Release'">
+            <RemoteDir>FireFlow.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>FireFlow</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="Release\Win32\FireFlow.exe" Condition="'$(Config)'=='Release'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>FireFlow.exe</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Release\Win32\FireFlow.rsm" Condition="'$(Config)'=='Release'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>FireFlow.rsm</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="$(BDSLIB)\$(PLATFORM)\debug\sysinit.dcu" Condition="'$(UsePackages)'=='true'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>sysinit.dcu</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="$(BDSLIB)\$(PLATFORM)\debug\rtl.dcp" Condition="'$(UsePackages)'=='true'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>rtl.dcp</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Debug\Win32\FireFlow.rsm" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>FireFlow.rsm</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+        <DeployFile Include="Debug\Win32\FireFlow.exe" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FireFlow\</RemoteDir>
+            <RemoteName>FireFlow.exe</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+        </DeployFile>
+    </ItemGroup>
+</Project>
