@@ -5,58 +5,160 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Rtti, System.Classes,
   System.Variants, FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs,
-  FMX.Media;
+  FMX.Media, FMX.Layouts, Data.Bind.EngExt, Fmx.Bind.DBEngExt, System.Bindings.Outputs, Fmx.Bind.Editors,
+  Data.Bind.Components;
 
 type
   TForm1 = class(TForm)
     MediaPlayer1: TMediaPlayer;
-    MediaPlayer2: TMediaPlayer;
-    Button1: TButton;
     OpenDialog1: TOpenDialog;
-    Button2: TButton;
-    Button3: TButton;
-    TrackBar1: TTrackBar;
-    TrackBar2: TTrackBar;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    btnPlay1: TButton;
+    tbVolume1: TTrackBar;
+    pnlPlayer1: TPanel;
+    btnLoad1: TButton;
+    GridLayout1: TGridLayout;
+    lblStatus1: TLabel;
+    pnlPlayer2: TPanel;
+    tbVolume2: TTrackBar;
+    btnPlay2: TButton;
+    btnLoad2: TButton;
+    lblStatus2: TLabel;
+    MediaPlayer2: TMediaPlayer;
+    pnlPlayer3: TPanel;
+    tbVolume3: TTrackBar;
+    btnPlay3: TButton;
+    btnLoad3: TButton;
+    lblStatus3: TLabel;
+    MediaPlayer3: TMediaPlayer;
+    pnlPlayer4: TPanel;
+    tbVolume4: TTrackBar;
+    btnPlay4: TButton;
+    btnLoad4: TButton;
+    lblStatus4: TLabel;
+    MediaPlayer4: TMediaPlayer;
+    pnlPlayer5: TPanel;
+    tbVolume5: TTrackBar;
+    btnPlay5: TButton;
+    Button11: TButton;
+    lblStatus5: TLabel;
+    MediaPlayer5: TMediaPlayer;
+    pnlPlayer6: TPanel;
+    tbVolume6: TTrackBar;
+    btnPlay6: TButton;
+    btnLoad6: TButton;
+    lblStatus6: TLabel;
+    MediaPlayer6: TMediaPlayer;
+    pnlPlayer7: TPanel;
+    tbVolume7: TTrackBar;
+    btnPlay7: TButton;
+    btnLoad7: TButton;
+    lblStatus7: TLabel;
+    MediaPlayer7: TMediaPlayer;
+    pnlPlayer8: TPanel;
+    tbVolume8: TTrackBar;
+    btnPlay8: TButton;
+    btnLoad8: TButton;
+    lblStatus8: TLabel;
+    MediaPlayer8: TMediaPlayer;
+    lblVolumeLevel1: TLabel;
+    lblVolumeLevel2: TLabel;
+    lblVolumeLevel3: TLabel;
+    lblVolumeLevel4: TLabel;
+    lblVolumeLevel5: TLabel;
+    lblVolumeLevel6: TLabel;
+    lblVolumeLevel7: TLabel;
+    lblVolumeLevel8: TLabel;
+    BindingsList1: TBindingsList;
+    VolumeLevel1: TBindExprItems;
+    VolumeLevel2: TBindExprItems;
+    VolumeLevel3: TBindExprItems;
+    VolumeLevel4: TBindExprItems;
+    VolumeLevel5: TBindExprItems;
+    VolumeLevel6: TBindExprItems;
+    VolumeLevel7: TBindExprItems;
+    VolumeLevel8: TBindExprItems;
+    MediaPlayerStatus1: TBindExprItems;
+    MediaPlayerStatus2: TBindExprItems;
+    MediaPlayerStatus3: TBindExprItems;
+    MediaPlayerStatus4: TBindExprItems;
+    MediaPlayerStatus5: TBindExprItems;
+    MediaPlayerStatus6: TBindExprItems;
+    MediaPlayerStatus7: TBindExprItems;
+    MediaPlayerStatus8: TBindExprItems;
+    Timer1: TTimer;
+    procedure HandleLoadMedia(Sender: TObject);
+    procedure btnPlayClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
-    procedure TrackBar1Change(Sender: TObject);
-    procedure TrackBar2Change(Sender: TObject);
+    procedure HandleVolumeChangesByTrackbar(Sender: TObject);
+    procedure BindExprItems1AssigningValue(Sender: TObject; AssignValueRec: TBindingAssignValueRec;
+      var Value: TValue; var Handled: Boolean);
+    procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
+    function GetObjectByName(objName: string; Number: integer): TComponent;
   public
     { Public declarations }
   end;
 
 var
   Form1: TForm1;
+  FNotifying: Integer;
+
+const
+// Component name prefix
+MEDIA_PLAYER = 'MediaPlayer';
+PLAY_BUTTON = 'btnPlay';
 
 implementation
 
 {$R *.fmx}
 
-procedure TForm1.Button1Click(Sender: TObject);
+uses MediaPlayer.StateConversion;
+
+procedure TForm1.HandleLoadMedia(Sender: TObject);
+var
+  MediaPlayer: TComponent;
+  PlayButton: TComponent;
 begin
   // Only supported files
   OpenDialog1.Filter := TMediaCodecManager.GetFilterString;
   if (OpenDialog1.Execute) then
   begin
-      MediaPlayer1.FileName := OpenDialog1.FileName;
-  end;
-
-  if (OpenDialog1.Execute) then
-  begin
-      MediaPlayer2.FileName := OpenDialog1.FileName;
+    MediaPlayer := GetObjectByName(MEDIA_PLAYER, (Sender as TComponent).Tag);
+    if Assigned(MediaPlayer) and (MediaPlayer is TMediaPlayer) then
+    begin
+      (MediaPlayer as TMediaPlayer).FileName := OpenDialog1.FileName;
+      if (MediaPlayer as TMediaPlayer).State = TMediaState.Stopped then
+      begin
+        PlayButton := GetObjectByName(PLAY_BUTTON, (Sender as TComponent).Tag);
+        if Assigned(PlayButton) and (PlayButton is TButton) then
+        begin
+          (PlayButton as TButton).Enabled := True;
+        end;
+      end;
+    end;
   end;
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TForm1.BindExprItems1AssigningValue(Sender: TObject; AssignValueRec: TBindingAssignValueRec;
+  var Value: TValue; var Handled: Boolean);
 begin
-  if MediaPlayer1.State <> TMediaState.Unavailable  then
-    if MediaPlayer1.State = TMediaState.Stopped  then
-      MediaPlayer1.Play
+  HandleVolumeChangesByTrackbar(Sender);
+end;
+
+procedure TForm1.btnPlayClick(Sender: TObject);
+var
+  MediaPlayer: TComponent;
+begin
+  MediaPlayer := GetObjectByName(MEDIA_PLAYER, (Sender as TComponent).Tag);
+  if Assigned(MediaPlayer) and (MediaPlayer is TMediaPlayer) then
+  begin
+  if (MediaPlayer as TMediaPlayer).State <> TMediaState.Unavailable  then
+    if (MediaPlayer as TMediaPlayer).State = TMediaState.Stopped  then
+      (MediaPlayer as TMediaPlayer).Play
     else
-      MediaPlayer1.Stop;
+      (MediaPlayer as TMediaPlayer).Stop;
+  end;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
@@ -68,14 +170,58 @@ begin
       MediaPlayer2.Stop;
 end;
 
-procedure TForm1.TrackBar1Change(Sender: TObject);
+function TForm1.GetObjectByName(objName: string; Number: integer): TComponent;
+var
+  MediaPlayerName: String;
 begin
-  MediaPlayer1.Volume := TrackBar1.Value/100;
+  // Volume Commands can only came from TTrackbar
+  MediaPlayerName := objName + IntToStr(Number);
+  Result := FindComponent(MediaPlayerName);
 end;
 
-procedure TForm1.TrackBar2Change(Sender: TObject);
+procedure TForm1.HandleVolumeChangesByTrackbar(Sender: TObject);
+var
+  MediaPlayer: TComponent;
 begin
-  MediaPlayer2.Volume := TrackBar2.Value/100;
+  // Volume Commands can only came from TTrackbar
+  if Sender is TTrackBar then
+  begin
+    MediaPlayer := GetObjectByName(MEDIA_PLAYER, (Sender as TComponent).Tag);
+
+    if Assigned(MediaPlayer) and (MediaPlayer is TMediaPlayer) then
+    begin
+      (MediaPlayer as TMediaPlayer).Volume := (Sender as TTrackBar).Value/100;
+
+      // Some controls send notifications when setting properties,
+      // like TTrackBar
+      if FNotifying = 0 then
+      begin
+        Inc(FNotifying);
+        // Send notification to cause expression re-evaluation of dependent expressions
+        try
+          BindingsList1.Notify(Sender, '');
+        finally
+          Dec(FNotifying);
+        end;
+      end;
+    end;
+  end;
+end;
+
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+var
+  I: Integer;
+  MediaPlayer: TComponent;
+begin
+  for I := 1 to 8 do
+  begin
+    MediaPlayer := GetObjectByName(MEDIA_PLAYER, I);
+    if Assigned(MediaPlayer) and (MediaPlayer is TMediaPlayer) then
+    begin
+      BindingsList1.Notify(MediaPlayer, '');
+    end;
+  end;
 end;
 
 end.

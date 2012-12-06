@@ -2,70 +2,728 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Dual Player'
-  ClientHeight = 194
-  ClientWidth = 329
+  ClientHeight = 249
+  ClientWidth = 800
   FormFactor.Width = 1680
   FormFactor.Height = 1050
   FormFactor.Devices = [dkDesktop]
-  object Button1: TButton
-    DisableFocusEffect = False
-    Height = 22.000000000000000000
-    Position.X = 120.000000000000000000
-    Position.Y = 144.000000000000000000
-    Text = 'Load Media'
-    Width = 80.000000000000000000
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    DisableFocusEffect = False
-    Height = 22.000000000000000000
-    Position.X = 40.000000000000000000
-    Position.Y = 88.000000000000000000
-    Text = 'Play 1'
-    Width = 80.000000000000000000
-    OnClick = Button2Click
-  end
-  object Button3: TButton
-    DisableFocusEffect = False
-    Height = 22.000000000000000000
-    Position.X = 208.000000000000000000
-    Position.Y = 88.000000000000000000
-    Text = 'Play 2'
-    Width = 80.000000000000000000
-    OnClick = Button3Click
-  end
-  object MediaPlayer1: TMediaPlayer
-    Left = 56
-    Top = 128
-  end
-  object MediaPlayer2: TMediaPlayer
-    Left = 240
-    Top = 128
-  end
   object OpenDialog1: TOpenDialog
-    Left = 152
-    Top = 88
+    Left = 384
+    Top = 24
   end
-  object TrackBar1: TTrackBar
-    DisableFocusEffect = False
-    Height = 140.000000000000000000
-    Orientation = orVertical
-    Position.X = 8.000000000000000000
-    Position.Y = 16.000000000000000000
-    RotationAngle = 180.000000000000000000
-    Value = 100.000000000000000000
-    Width = 20.000000000000000000
-    OnChange = TrackBar1Change
+  object GridLayout1: TGridLayout
+    Align = alTop
+    Height = 257.000000000000000000
+    ItemHeight = 250.000000000000000000
+    ItemWidth = 100.000000000000000000
+    Orientation = orHorizontal
+    Width = 800.000000000000000000
+    object pnlPlayer1: TPanel
+      Tag = 1
+      Height = 250.000000000000000000
+      Width = 100.000000000000000000
+      object tbVolume1: TTrackBar
+        Tag = 1
+        Anchors = [akRight, akBottom]
+        DisableFocusEffect = False
+        Height = 154.000000000000000000
+        Orientation = orVertical
+        Position.X = 27.000000000000000000
+        Position.Y = 34.000000000000000000
+        RotationAngle = 180.000000000000000000
+        Scale.X = 2.000000000000000000
+        Value = 100.000000000000000000
+        Width = 20.000000000000000000
+        OnChange = HandleVolumeChangesByTrackbar
+      end
+      object btnPlay1: TButton
+        Tag = 1
+        Align = alBottom
+        DisableFocusEffect = False
+        Enabled = False
+        Height = 22.000000000000000000
+        Position.Y = 206.000000000000000000
+        Text = 'Play'
+        Width = 100.000000000000000000
+        OnClick = btnPlayClick
+      end
+      object btnLoad1: TButton
+        Tag = 1
+        Align = alBottom
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.Y = 228.000000000000000000
+        Text = 'Load'
+        Width = 100.000000000000000000
+        OnClick = HandleLoadMedia
+      end
+      object lblStatus1: TLabel
+        Tag = 1
+        Align = alMostTop
+        Height = 25.000000000000000000
+        Text = 'Not Ready!'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+      object MediaPlayer1: TMediaPlayer
+        Tag = 1
+        Left = 32
+        Top = 120
+      end
+      object lblVolumeLevel1: TLabel
+        Tag = 1
+        Align = alBottom
+        Height = 25.000000000000000000
+        Position.Y = 181.000000000000000000
+        Text = '100'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+    end
+    object pnlPlayer2: TPanel
+      Tag = 2
+      Height = 250.000000000000000000
+      Position.X = 100.000000000000000000
+      Width = 100.000000000000000000
+      object tbVolume2: TTrackBar
+        Tag = 2
+        Anchors = [akRight, akBottom]
+        DisableFocusEffect = False
+        Height = 154.000000000000000000
+        Orientation = orVertical
+        Position.X = 27.000000000000000000
+        Position.Y = 34.000000000000000000
+        RotationAngle = 180.000000000000000000
+        Scale.X = 2.000000000000000000
+        Value = 100.000000000000000000
+        Width = 20.000000000000000000
+        OnChange = HandleVolumeChangesByTrackbar
+      end
+      object btnPlay2: TButton
+        Tag = 2
+        Align = alBottom
+        DisableFocusEffect = False
+        Enabled = False
+        Height = 22.000000000000000000
+        Position.Y = 206.000000000000000000
+        Text = 'Play'
+        Width = 100.000000000000000000
+        OnClick = btnPlayClick
+      end
+      object btnLoad2: TButton
+        Tag = 2
+        Align = alBottom
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.Y = 228.000000000000000000
+        Text = 'Load'
+        Width = 100.000000000000000000
+        OnClick = HandleLoadMedia
+      end
+      object lblStatus2: TLabel
+        Tag = 2
+        Align = alMostTop
+        Height = 25.000000000000000000
+        Text = 'Not Ready!'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+      object MediaPlayer2: TMediaPlayer
+        Tag = 2
+        Left = 136
+        Top = 120
+      end
+      object lblVolumeLevel2: TLabel
+        Tag = 2
+        Align = alBottom
+        Height = 25.000000000000000000
+        Position.Y = 181.000000000000000000
+        Text = '100'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+    end
+    object pnlPlayer3: TPanel
+      Tag = 3
+      Height = 250.000000000000000000
+      Position.X = 200.000000000000000000
+      Width = 100.000000000000000000
+      object tbVolume3: TTrackBar
+        Tag = 3
+        Anchors = [akRight, akBottom]
+        DisableFocusEffect = False
+        Height = 154.000000000000000000
+        Orientation = orVertical
+        Position.X = 27.000000000000000000
+        Position.Y = 34.000000000000000000
+        RotationAngle = 180.000000000000000000
+        Scale.X = 2.000000000000000000
+        Value = 100.000000000000000000
+        Width = 20.000000000000000000
+        OnChange = HandleVolumeChangesByTrackbar
+      end
+      object btnPlay3: TButton
+        Tag = 3
+        Align = alBottom
+        DisableFocusEffect = False
+        Enabled = False
+        Height = 22.000000000000000000
+        Position.Y = 206.000000000000000000
+        Text = 'Play'
+        Width = 100.000000000000000000
+        OnClick = btnPlayClick
+      end
+      object btnLoad3: TButton
+        Tag = 3
+        Align = alBottom
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.Y = 228.000000000000000000
+        Text = 'Load'
+        Width = 100.000000000000000000
+        OnClick = HandleLoadMedia
+      end
+      object lblStatus3: TLabel
+        Tag = 3
+        Align = alMostTop
+        Height = 25.000000000000000000
+        Text = 'Not Ready!'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+      object MediaPlayer3: TMediaPlayer
+        Tag = 3
+        Left = 232
+        Top = 120
+      end
+      object lblVolumeLevel3: TLabel
+        Tag = 3
+        Align = alBottom
+        Height = 25.000000000000000000
+        Position.Y = 181.000000000000000000
+        Text = '100'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+    end
+    object pnlPlayer4: TPanel
+      Tag = 4
+      Height = 250.000000000000000000
+      Position.X = 300.000000000000000000
+      Width = 100.000000000000000000
+      object tbVolume4: TTrackBar
+        Tag = 4
+        Anchors = [akRight, akBottom]
+        DisableFocusEffect = False
+        Height = 154.000000000000000000
+        Orientation = orVertical
+        Position.X = 27.000000000000000000
+        Position.Y = 34.000000000000000000
+        RotationAngle = 180.000000000000000000
+        Scale.X = 2.000000000000000000
+        Value = 100.000000000000000000
+        Width = 20.000000000000000000
+        OnChange = HandleVolumeChangesByTrackbar
+      end
+      object btnPlay4: TButton
+        Tag = 4
+        Align = alBottom
+        DisableFocusEffect = False
+        Enabled = False
+        Height = 22.000000000000000000
+        Position.Y = 206.000000000000000000
+        Text = 'Play'
+        Width = 100.000000000000000000
+        OnClick = btnPlayClick
+      end
+      object btnLoad4: TButton
+        Tag = 4
+        Align = alBottom
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.Y = 228.000000000000000000
+        Text = 'Load'
+        Width = 100.000000000000000000
+        OnClick = HandleLoadMedia
+      end
+      object lblStatus4: TLabel
+        Tag = 4
+        Align = alMostTop
+        Height = 25.000000000000000000
+        Text = 'Not Ready!'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+      object MediaPlayer4: TMediaPlayer
+        Tag = 4
+        Left = 336
+        Top = 120
+      end
+      object lblVolumeLevel4: TLabel
+        Tag = 4
+        Align = alBottom
+        Height = 25.000000000000000000
+        Position.Y = 181.000000000000000000
+        Text = '100'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+    end
+    object pnlPlayer5: TPanel
+      Tag = 5
+      Height = 250.000000000000000000
+      Position.X = 400.000000000000000000
+      Width = 100.000000000000000000
+      object tbVolume5: TTrackBar
+        Tag = 5
+        Anchors = [akRight, akBottom]
+        DisableFocusEffect = False
+        Height = 154.000000000000000000
+        Orientation = orVertical
+        Position.X = 27.000000000000000000
+        Position.Y = 34.000000000000000000
+        RotationAngle = 180.000000000000000000
+        Scale.X = 2.000000000000000000
+        Value = 100.000000000000000000
+        Width = 20.000000000000000000
+        OnChange = HandleVolumeChangesByTrackbar
+      end
+      object btnPlay5: TButton
+        Tag = 5
+        Align = alBottom
+        DisableFocusEffect = False
+        Enabled = False
+        Height = 22.000000000000000000
+        Position.Y = 206.000000000000000000
+        Text = 'Play'
+        Width = 100.000000000000000000
+        OnClick = btnPlayClick
+      end
+      object Button11: TButton
+        Tag = 5
+        Align = alBottom
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.Y = 228.000000000000000000
+        Text = 'Load'
+        Width = 100.000000000000000000
+        OnClick = HandleLoadMedia
+      end
+      object lblStatus5: TLabel
+        Tag = 5
+        Align = alMostTop
+        Height = 25.000000000000000000
+        Text = 'Not Ready!'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+      object MediaPlayer5: TMediaPlayer
+        Tag = 5
+        Left = 432
+        Top = 120
+      end
+      object lblVolumeLevel5: TLabel
+        Tag = 5
+        Align = alBottom
+        Height = 25.000000000000000000
+        Position.Y = 181.000000000000000000
+        Text = '100'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+    end
+    object pnlPlayer6: TPanel
+      Tag = 6
+      Height = 250.000000000000000000
+      Position.X = 500.000000000000000000
+      Width = 100.000000000000000000
+      object tbVolume6: TTrackBar
+        Tag = 6
+        Anchors = [akRight, akBottom]
+        DisableFocusEffect = False
+        Height = 154.000000000000000000
+        Orientation = orVertical
+        Position.X = 27.000000000000000000
+        Position.Y = 34.000000000000000000
+        RotationAngle = 180.000000000000000000
+        Scale.X = 2.000000000000000000
+        Value = 100.000000000000000000
+        Width = 20.000000000000000000
+        OnChange = HandleVolumeChangesByTrackbar
+      end
+      object btnPlay6: TButton
+        Tag = 6
+        Align = alBottom
+        DisableFocusEffect = False
+        Enabled = False
+        Height = 22.000000000000000000
+        Position.Y = 206.000000000000000000
+        Text = 'Play'
+        Width = 100.000000000000000000
+        OnClick = btnPlayClick
+      end
+      object btnLoad6: TButton
+        Tag = 6
+        Align = alBottom
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.Y = 228.000000000000000000
+        Text = 'Load'
+        Width = 100.000000000000000000
+        OnClick = HandleLoadMedia
+      end
+      object lblStatus6: TLabel
+        Tag = 6
+        Align = alMostTop
+        Height = 25.000000000000000000
+        Text = 'Not Ready!'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+      object MediaPlayer6: TMediaPlayer
+        Tag = 6
+        Left = 536
+        Top = 120
+      end
+      object lblVolumeLevel6: TLabel
+        Tag = 6
+        Align = alBottom
+        Height = 25.000000000000000000
+        Position.Y = 181.000000000000000000
+        Text = '100'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+    end
+    object pnlPlayer7: TPanel
+      Tag = 7
+      Height = 250.000000000000000000
+      Position.X = 600.000000000000000000
+      Width = 100.000000000000000000
+      object tbVolume7: TTrackBar
+        Tag = 7
+        Anchors = [akRight, akBottom]
+        DisableFocusEffect = False
+        Height = 154.000000000000000000
+        Orientation = orVertical
+        Position.X = 27.000000000000000000
+        Position.Y = 34.000000000000000000
+        RotationAngle = 180.000000000000000000
+        Scale.X = 2.000000000000000000
+        Value = 100.000000000000000000
+        Width = 20.000000000000000000
+        OnChange = HandleVolumeChangesByTrackbar
+      end
+      object btnPlay7: TButton
+        Tag = 7
+        Align = alBottom
+        DisableFocusEffect = False
+        Enabled = False
+        Height = 22.000000000000000000
+        Position.Y = 206.000000000000000000
+        Text = 'Play'
+        Width = 100.000000000000000000
+        OnClick = btnPlayClick
+      end
+      object btnLoad7: TButton
+        Tag = 7
+        Align = alBottom
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.Y = 228.000000000000000000
+        Text = 'Load'
+        Width = 100.000000000000000000
+        OnClick = HandleLoadMedia
+      end
+      object lblStatus7: TLabel
+        Tag = 7
+        Align = alMostTop
+        Height = 25.000000000000000000
+        Text = 'Not Ready!'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+      object MediaPlayer7: TMediaPlayer
+        Tag = 7
+        Left = 632
+        Top = 120
+      end
+      object lblVolumeLevel7: TLabel
+        Tag = 7
+        Align = alBottom
+        Height = 25.000000000000000000
+        Position.Y = 181.000000000000000000
+        Text = '100'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+    end
+    object pnlPlayer8: TPanel
+      Tag = 8
+      Height = 250.000000000000000000
+      Position.X = 700.000000000000000000
+      Width = 100.000000000000000000
+      object tbVolume8: TTrackBar
+        Tag = 8
+        Anchors = [akRight, akBottom]
+        DisableFocusEffect = False
+        Height = 154.000000000000000000
+        Orientation = orVertical
+        Position.X = 27.000000000000000000
+        Position.Y = 34.000000000000000000
+        RotationAngle = 180.000000000000000000
+        Scale.X = 2.000000000000000000
+        Value = 100.000000000000000000
+        Width = 20.000000000000000000
+        OnChange = HandleVolumeChangesByTrackbar
+      end
+      object btnPlay8: TButton
+        Tag = 8
+        Align = alBottom
+        DisableFocusEffect = False
+        Enabled = False
+        Height = 22.000000000000000000
+        Position.Y = 206.000000000000000000
+        Text = 'Play'
+        Width = 100.000000000000000000
+        OnClick = btnPlayClick
+      end
+      object btnLoad8: TButton
+        Tag = 8
+        Align = alBottom
+        DisableFocusEffect = False
+        Height = 22.000000000000000000
+        Position.Y = 228.000000000000000000
+        Text = 'Load'
+        Width = 100.000000000000000000
+        OnClick = HandleLoadMedia
+      end
+      object lblStatus8: TLabel
+        Tag = 8
+        Align = alMostTop
+        Height = 25.000000000000000000
+        Text = 'Not Ready!'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+      object MediaPlayer8: TMediaPlayer
+        Tag = 8
+        Left = 736
+        Top = 120
+      end
+      object lblVolumeLevel8: TLabel
+        Tag = 8
+        Align = alBottom
+        Height = 25.000000000000000000
+        Position.Y = 181.000000000000000000
+        Text = '100'
+        TextAlign = taCenter
+        Width = 100.000000000000000000
+      end
+    end
   end
-  object TrackBar2: TTrackBar
-    DisableFocusEffect = False
-    Height = 140.000000000000000000
-    Orientation = orVertical
-    Position.X = 296.000000000000000000
-    Position.Y = 16.000000000000000000
-    RotationAngle = 180.000000000000000000
-    Value = 100.000000000000000000
-    Width = 20.000000000000000000
-    OnChange = TrackBar2Change
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    UseAppManager = True
+    Left = 384
+    Top = 144
+    object VolumeLevel1: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblVolumeLevel1
+      SourceComponent = tbVolume1
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'Round(Value)'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object VolumeLevel2: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblVolumeLevel2
+      SourceComponent = tbVolume2
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'Round(Value)'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object VolumeLevel3: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblVolumeLevel3
+      SourceComponent = tbVolume3
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'Round(Value)'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object VolumeLevel4: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblVolumeLevel4
+      SourceComponent = tbVolume4
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'Round(Value)'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object VolumeLevel5: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblVolumeLevel5
+      SourceComponent = tbVolume5
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'Round(Value)'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object VolumeLevel6: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblVolumeLevel6
+      SourceComponent = tbVolume6
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'Round(Value)'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object VolumeLevel7: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblVolumeLevel7
+      SourceComponent = tbVolume7
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'Round(Value)'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object VolumeLevel8: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblVolumeLevel8
+      SourceComponent = tbVolume8
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'Round(Value)'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object MediaPlayerStatus1: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblStatus1
+      SourceComponent = MediaPlayer1
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'State'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object MediaPlayerStatus2: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblStatus2
+      SourceComponent = MediaPlayer2
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'State'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object MediaPlayerStatus3: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblStatus3
+      SourceComponent = MediaPlayer3
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'State'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object MediaPlayerStatus4: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblStatus4
+      SourceComponent = MediaPlayer4
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'State'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object MediaPlayerStatus5: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblStatus5
+      SourceComponent = MediaPlayer5
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'State'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object MediaPlayerStatus6: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblStatus6
+      SourceComponent = MediaPlayer6
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'State'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object MediaPlayerStatus7: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblStatus7
+      SourceComponent = MediaPlayer7
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'State'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+    object MediaPlayerStatus8: TBindExprItems
+      Category = 'Binding Expressions'
+      ControlComponent = lblStatus8
+      SourceComponent = MediaPlayer8
+      FormatExpressions = <
+        item
+          ControlExpression = 'Text'
+          SourceExpression = 'State'
+        end>
+      ClearExpressions = <>
+      NotifyOutputs = False
+    end
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 384
+    Top = 72
   end
 end

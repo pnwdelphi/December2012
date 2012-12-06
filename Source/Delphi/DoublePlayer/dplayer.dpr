@@ -2,7 +2,8 @@ program dplayer;
 
 uses
   FMX.Forms,
-  fMain in 'fMain.pas' {Form1};
+  fMain in 'fMain.pas' {Form1},
+  MediaPlayer.StateConversion in 'MediaPlayer.StateConversion.pas';
 
 {$R *.res}
 
