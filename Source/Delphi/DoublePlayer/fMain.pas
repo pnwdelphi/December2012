@@ -6,10 +6,10 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Rtti, System.Classes,
   System.Variants, FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs,
   FMX.Media, FMX.Layouts, Data.Bind.EngExt, Fmx.Bind.DBEngExt, System.Bindings.Outputs, Fmx.Bind.Editors,
-  Data.Bind.Components;
+  Data.Bind.Components, fBase;
 
 type
-  TForm1 = class(TForm)
+  TForm1 = class(TfrmBase)
     MediaPlayer1: TMediaPlayer;
     OpenDialog1: TOpenDialog;
     btnPlay1: TButton;
@@ -93,9 +93,10 @@ type
     procedure BindExprItems1AssigningValue(Sender: TObject; AssignValueRec: TBindingAssignValueRec;
       var Value: TValue; var Handled: Boolean);
     procedure Timer1Timer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
-    function GetObjectByName(objName: string; Number: integer): TComponent;
   public
     { Public declarations }
   end;
@@ -108,12 +109,13 @@ const
 // Component name prefix
 MEDIA_PLAYER = 'MediaPlayer';
 PLAY_BUTTON = 'btnPlay';
+MEDIA_PLAYER_CONTROL ='MediaPlayerControl';
 
 implementation
 
 {$R *.fmx}
 
-uses MediaPlayer.StateConversion;
+uses MediaPlayer.StateConversion, fScreens;
 
 procedure TForm1.HandleLoadMedia(Sender: TObject);
 var
@@ -170,14 +172,37 @@ begin
       MediaPlayer2.Stop;
 end;
 
-function TForm1.GetObjectByName(objName: string; Number: integer): TComponent;
-var
-  MediaPlayerName: String;
+procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  // Volume Commands can only came from TTrackbar
-  MediaPlayerName := objName + IntToStr(Number);
-  Result := FindComponent(MediaPlayerName);
+  if Assigned(fScreenWall) then
+    fScreenWall.Release;
 end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+var
+  MediaPlayer,
+  MediaPlayerControl: TComponent;
+  I: Integer;
+begin
+
+  fScreenWall := TfScreenWall.Create(nil);
+  // Assigns all playes to all media controls
+  for I := 1 to 8 do
+  begin
+    MediaPlayer := GetObjectByName(MEDIA_PLAYER, I);
+    if Assigned(MediaPlayer) and (MediaPlayer is TMediaPlayer) then
+    begin
+      MediaPlayerControl := fScreenWall.GetObjectByName(MEDIA_PLAYER_CONTROL, I);
+      if Assigned(MediaPlayerControl) and (MediaPlayerControl is TMediaPlayerControl) then
+      begin
+        (MediaPlayerControl as TMediaPlayerControl).MediaPlayer := (MediaPlayer as TMediaPlayer);
+      end;
+    end;
+  end;
+
+  fScreenWall.Show;
+end;
+
 
 procedure TForm1.HandleVolumeChangesByTrackbar(Sender: TObject);
 var

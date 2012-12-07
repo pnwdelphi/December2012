@@ -1,0 +1,70 @@
+object fScreenWall: TfScreenWall
+  Left = 0
+  Top = 0
+  Caption = 'Screen Wall'
+  ClientHeight = 401
+  ClientWidth = 806
+  FormFactor.Width = 1680
+  FormFactor.Height = 1050
+  FormFactor.Devices = [dkDesktop]
+  OnClose = FormClose
+  object GridLayout1: TGridLayout
+    Align = alClient
+    Height = 401.000000000000000000
+    ItemHeight = 200.000000000000000000
+    ItemWidth = 200.000000000000000000
+    Orientation = orHorizontal
+    Width = 806.000000000000000000
+    OnResize = GridLayout1Resize
+    object MediaPlayerControl1: TMediaPlayerControl
+      Align = alClient
+      Height = 200.000000000000000000
+      Width = 200.000000000000000000
+    end
+    object MediaPlayerControl2: TMediaPlayerControl
+      Align = alClient
+      Height = 200.000000000000000000
+      Position.X = 200.000000000000000000
+      Width = 200.000000000000000000
+    end
+    object MediaPlayerControl3: TMediaPlayerControl
+      Align = alClient
+      Height = 200.000000000000000000
+      Position.X = 400.000000000000000000
+      Width = 200.000000000000000000
+    end
+    object MediaPlayerControl4: TMediaPlayerControl
+      Align = alClient
+      Height = 200.000000000000000000
+      Position.X = 600.000000000000000000
+      Width = 200.000000000000000000
+    end
+    object MediaPlayerControl5: TMediaPlayerControl
+      Align = alClient
+      Height = 200.000000000000000000
+      Position.Y = 200.000000000000000000
+      Width = 200.000000000000000000
+    end
+    object MediaPlayerControl6: TMediaPlayerControl
+      Align = alClient
+      Height = 200.000000000000000000
+      Position.X = 200.000000000000000000
+      Position.Y = 200.000000000000000000
+      Width = 200.000000000000000000
+    end
+    object MediaPlayerControl7: TMediaPlayerControl
+      Align = alClient
+      Height = 200.000000000000000000
+      Position.X = 400.000000000000000000
+      Position.Y = 200.000000000000000000
+      Width = 200.000000000000000000
+    end
+    object MediaPlayerControl8: TMediaPlayerControl
+      Align = alClient
+      Height = 200.000000000000000000
+      Position.X = 600.000000000000000000
+      Position.Y = 200.000000000000000000
+      Width = 200.000000000000000000
+    end
+  end
+end
