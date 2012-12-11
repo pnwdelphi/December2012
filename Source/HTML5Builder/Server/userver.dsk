@@ -8,18 +8,3 @@ group0=Watches
 [Watchgroup_Watches]
 Count=0
 
-[OpenFiles]
-Module2=..\gmapdemo\uMapSearch.php
-Module3=userver.php
-
-[..\gmapdemo\uMapSearch.php]
-Line=21
-Position=8
-
-[userver.php]
-Line=22
-Position=0
-
-[Status]
-OpenModule=userver.php
-

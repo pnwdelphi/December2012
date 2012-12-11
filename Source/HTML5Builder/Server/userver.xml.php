@@ -6,6 +6,7 @@
   <property name="Height">370</property>
   <property name="HiddenFields">a:0:{}</property>
   <property name="Name">Page1</property>
+  <property name="UseAjax">1</property>
   <property name="Width">597</property>
   <object class="Edit" name="Edit1" >
     <property name="Animations">a:0:{}</property>

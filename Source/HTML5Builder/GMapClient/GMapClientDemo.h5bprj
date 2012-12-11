@@ -1,0 +1,12 @@
+[PHPProject]
+Version=5
+
+[Files]
+Item1=uClientGmapDemo.js
+
+[MainScript]
+Script=
+
+[Parameters]
+value=
+
