@@ -1,3 +1,10 @@
+//---------------------------------------------------------------------------
+// This software is Copyright (c) 2012 Ala Fletcher.
+// You may use thius software in any way you want and contribute back to the
+// author with any improvements you may have made to it.
+// You are also allowed to use this software or part of it for any purposes as long
+// as you retain this message and credit the author for it's contribuition.
+//---------------------------------------------------------------------------
 unit fBase;
 
 interface

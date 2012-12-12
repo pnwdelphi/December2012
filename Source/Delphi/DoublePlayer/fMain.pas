@@ -1,3 +1,10 @@
+//---------------------------------------------------------------------------
+// This software is Copyright (c) 2012 Ala Fletcher.
+// You may use thius software in any way you want and contribute back to the
+// author with any improvements you may have made to it.
+// You are also allowed to use this software or part of it for any purposes as long
+// as you retain this message and credit the author for it's contribuition.
+//---------------------------------------------------------------------------
 unit fMain;
 
 interface
@@ -88,7 +95,6 @@ type
     Timer1: TTimer;
     procedure HandleLoadMedia(Sender: TObject);
     procedure btnPlayClick(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
     procedure HandleVolumeChangesByTrackbar(Sender: TObject);
     procedure BindExprItems1AssigningValue(Sender: TObject; AssignValueRec: TBindingAssignValueRec;
       var Value: TValue; var Handled: Boolean);
@@ -161,15 +167,6 @@ begin
     else
       (MediaPlayer as TMediaPlayer).Stop;
   end;
-end;
-
-procedure TForm1.Button3Click(Sender: TObject);
-begin
-  if MediaPlayer2.State <> TMediaState.Unavailable  then
-    if MediaPlayer2.State = TMediaState.Stopped  then
-      MediaPlayer2.Play
-    else
-      MediaPlayer2.Stop;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);

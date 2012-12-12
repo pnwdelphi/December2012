@@ -3,13 +3,13 @@
         <ProjectGuid>{9495E2FD-16FD-4870-A0CA-E67ED6692972}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="Layouts\FlowLayout\FlowLayout.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="VideoCaptureHD\VideoCaptureHD.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="DoublePlayer\dplayer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Layouts\FlowLayout\FlowLayout.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="FireFlow\FireFlow.dproj">
@@ -23,15 +23,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="FlowLayout">
-        <MSBuild Projects="Layouts\FlowLayout\FlowLayout.dproj"/>
-    </Target>
-    <Target Name="FlowLayout:Clean">
-        <MSBuild Projects="Layouts\FlowLayout\FlowLayout.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="FlowLayout:Make">
-        <MSBuild Projects="Layouts\FlowLayout\FlowLayout.dproj" Targets="Make"/>
-    </Target>
     <Target Name="VideoCaptureHD">
         <MSBuild Projects="VideoCaptureHD\VideoCaptureHD.dproj"/>
     </Target>
@@ -50,6 +41,15 @@
     <Target Name="dplayer:Make">
         <MSBuild Projects="DoublePlayer\dplayer.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FlowLayout">
+        <MSBuild Projects="Layouts\FlowLayout\FlowLayout.dproj"/>
+    </Target>
+    <Target Name="FlowLayout:Clean">
+        <MSBuild Projects="Layouts\FlowLayout\FlowLayout.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FlowLayout:Make">
+        <MSBuild Projects="Layouts\FlowLayout\FlowLayout.dproj" Targets="Make"/>
+    </Target>
     <Target Name="FireFlow">
         <MSBuild Projects="FireFlow\FireFlow.dproj"/>
     </Target>
@@ -60,13 +60,13 @@
         <MSBuild Projects="FireFlow\FireFlow.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="FlowLayout;VideoCaptureHD;dplayer;FireFlow"/>
+        <CallTarget Targets="VideoCaptureHD;dplayer;FlowLayout;FireFlow"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="FlowLayout:Clean;VideoCaptureHD:Clean;dplayer:Clean;FireFlow:Clean"/>
+        <CallTarget Targets="VideoCaptureHD:Clean;dplayer:Clean;FlowLayout:Clean;FireFlow:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="FlowLayout:Make;VideoCaptureHD:Make;dplayer:Make;FireFlow:Make"/>
+        <CallTarget Targets="VideoCaptureHD:Make;dplayer:Make;FlowLayout:Make;FireFlow:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
